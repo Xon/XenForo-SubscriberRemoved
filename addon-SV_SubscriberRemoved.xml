@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="SV_SubscriberRemoved" title="Subscriber Removed Notify" version_string="1.0.0" version_id="100000" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="load_class" execute_order="10" callback_class="SV_SubscriberRemoved_Listener" callback_method="load_class" active="1" hint="XenForo_DataWriter_User" description="XenForo_DataWriter_User"/>
+    <listener event_id="load_class" execute_order="10" callback_class="SV_SubscriberRemoved_Listener" callback_method="load_class" active="1" hint="XenForo_Model_User" description="XenForo_Model_User"/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <group group_id="subnotify_options" display_order="40000" debug_only="0"/>
+    <option option_id="subnotify_createthread" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="subnotify_options" display_order="201"/>
+    </option>
+    <option option_id="subnotify_forumid" edit_format="callback" data_type="unsigned_integer" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>XenForo_Option_NodeChooser::renderSelect</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="subnotify_options" display_order="202"/>
+    </option>
+    <option option_id="subnotify_pmrecipients" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>rows=4</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="subnotify_options" display_order="304"/>
+    </option>
+    <option option_id="subnotify_pmsenderid" edit_format="textbox" data_type="unsigned_integer" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="subnotify_options" display_order="302"/>
+    </option>
+    <option option_id="subnotify_pmusername" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>Administrator</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="subnotify_options" display_order="303"/>
+    </option>
+    <option option_id="subnotify_sendpm" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="subnotify_options" display_order="301"/>
+    </option>
+    <option option_id="subnotify_userid" edit_format="textbox" data_type="unsigned_integer" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="subnotify_options" display_order="203"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="option_group_subnotify_options" version_id="100000" version_string="1.0.0"><![CDATA[Subscriber Removed Notify]]></phrase>
+    <phrase title="option_group_subnotify_options_description" version_id="100000" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_subnotify_createthread" version_id="100000" version_string="1.0.0"><![CDATA[Create thread?]]></phrase>
+    <phrase title="option_subnotify_createthread_explain" version_id="100000" version_string="1.0.0"><![CDATA[A thread will be created when a subscriber Is banned or deleted]]></phrase>
+    <phrase title="option_subnotify_forumid" version_id="100000" version_string="1.0.0"><![CDATA[Forum]]></phrase>
+    <phrase title="option_subnotify_forumid_explain" version_id="100000" version_string="1.0.0"><![CDATA[Select the forum you wish to create notification threads in.]]></phrase>
+    <phrase title="option_subnotify_pmrecipients" version_id="100000" version_string="1.0.0"><![CDATA[Recipient usernames]]></phrase>
+    <phrase title="option_subnotify_pmrecipients_explain" version_id="100000" version_string="1.0.0"><![CDATA[Enter a list of users that should receive an alter ego conversation. One per line.<br/>This is required.]]></phrase>
+    <phrase title="option_subnotify_pmsenderid" version_id="100000" version_string="1.0.0"><![CDATA[ser ID]]></phrase>
+    <phrase title="option_subnotify_pmsenderid_explain" version_id="100000" version_string="1.0.0"><![CDATA[The user_id of the user that will send the PM.]]></phrase>
+    <phrase title="option_subnotify_pmusername" version_id="100000" version_string="1.0.0"><![CDATA[Username]]></phrase>
+    <phrase title="option_subnotify_pmusername_explain" version_id="100000" version_string="1.0.0"><![CDATA[Username of the PM Sender. This is required.]]></phrase>
+    <phrase title="option_subnotify_sendpm" version_id="100000" version_string="1.0.0"><![CDATA[Send PM]]></phrase>
+    <phrase title="option_subnotify_sendpm_explain" version_id="100000" version_string="1.0.0"><![CDATA[A PM will be sent when a subscriber Is banned or deleted]]></phrase>
+    <phrase title="option_subnotify_userid" version_id="100000" version_string="1.0.0"><![CDATA[User ID]]></phrase>
+    <phrase title="option_subnotify_userid_explain" version_id="100000" version_string="1.0.0"><![CDATA[The user id of the user posting the thread. If this is 0 it will be posted as a guest.]]></phrase>
+    <phrase title="SubNotify_thread_message" version_id="100000" version_string="1.0.0"><![CDATA[Subscriber <a href='{userlink}'>{username}</a> was {action} and requires manual clean-up.
+
+Email:{email}
+
+Active upgrades:
+{upgrades}]]></phrase>
+    <phrase title="SubNotify_thread_message_upgrade" version_id="100000" version_string="1.0.0"><![CDATA[{title} for {cost_amount} {cost_currency} for {length_amount} {length_unit}. {transaction_id} via {processor} by {email}]]></phrase>
+    <phrase title="SubNotify_thread_subject" version_id="100000" version_string="1.0.0"><![CDATA[Subscriber {username} was {action} and requires manual clean-up.]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates/>
+  <public_template_modifications/>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>

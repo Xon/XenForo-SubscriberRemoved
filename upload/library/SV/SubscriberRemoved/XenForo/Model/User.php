@@ -1,7 +1,7 @@
 <?php
 class SV_SubscriberRemoved_XenForo_Model_User extends XFCP_SV_SubscriberRemoved_XenForo_Model_User
 {
-    protected function notifySubscribedUser($action, $user)
+    public function notifySubscribedUser($action, $user)
     {
         $active_upgrades = $this->fetchAllKeyed("
             select distinct
@@ -57,6 +57,7 @@ class SV_SubscriberRemoved_XenForo_Model_User extends XFCP_SV_SubscriberRemoved_
             'upgrades' => implode("\n",$upgrades),
         ));
 
+        $options = XenForo_Application::getOptions();
         if ($options->subnotify_createthread)
         {
             try
@@ -82,7 +83,7 @@ class SV_SubscriberRemoved_XenForo_Model_User extends XFCP_SV_SubscriberRemoved_
             }
             catch(\Exception $e)
             {
-                XenForo_Error::logException($e);
+                XenForo_Error::logException($e, false);
             }
         }
 
@@ -98,7 +99,7 @@ class SV_SubscriberRemoved_XenForo_Model_User extends XFCP_SV_SubscriberRemoved_
                 ), "/n", $options->subnotify_pmrecipients);
                 $conversationRecipients = array_filter(explode("/n", $conversationRecipientsOption));
 
-                $starterArray = $userModel->getFullUserById($conversationStarterId, array(
+                $starterArray = $this->getFullUserById($conversationStarterId, array(
                     'join' => XenForo_Model_User::FETCH_USER_FULL | XenForo_Model_User::FETCH_USER_PERMISSIONS
                 ));
                 if (empty($starterArray) || empty($conversationStarterUsername) || empty($conversationRecipients))
@@ -122,7 +123,7 @@ class SV_SubscriberRemoved_XenForo_Model_User extends XFCP_SV_SubscriberRemoved_
             }
             catch(\Exception $e)
             {
-                XenForo_Error::logException($e);
+                XenForo_Error::logException($e, false);
             }
         }
     }

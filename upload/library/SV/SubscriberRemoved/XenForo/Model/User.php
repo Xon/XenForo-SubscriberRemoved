@@ -94,10 +94,10 @@ class SV_SubscriberRemoved_XenForo_Model_User extends XFCP_SV_SubscriberRemoved_
                 $conversationStarterId = $options->subnotify_pmsenderid;
                 $conversationStarterUsername = $options->subnotify_pmusername;
                 $conversationRecipientsOption = str_replace(array(
-                    "/r",
-                    "/r/n"
-                ), "/n", $options->subnotify_pmrecipients);
-                $conversationRecipients = array_filter(explode("/n", $conversationRecipientsOption));
+                    "\r",
+                    "\r\n"
+                ), "\n", $options->subnotify_pmrecipients);
+                $conversationRecipients = array_filter(explode("\n", $conversationRecipientsOption));
 
                 $starterArray = $this->getFullUserById($conversationStarterId, array(
                     'join' => XenForo_Model_User::FETCH_USER_FULL | XenForo_Model_User::FETCH_USER_PERMISSIONS

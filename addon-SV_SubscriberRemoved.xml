@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="SV_SubscriberRemoved" title="Subscriber Removed Notify" version_string="1.0.0a" version_id="1000001" url="https://xenforo.com/community/resources/subscriber-removed-notify.4322/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+<addon addon_id="SV_SubscriberRemoved" title="Subscriber Removed Notify" version_string="1.1.0" version_id="1010000" url="https://xenforo.com/community/resources/subscriber-removed-notify.4322/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
@@ -27,7 +27,7 @@
       <sub_options></sub_options>
       <relation group_id="subnotify_options" display_order="202"/>
     </option>
-    <option option_id="subnotify_pmrecipients" edit_format="textbox" data_type="string" can_backup="1">
+    <option option_id="subnotify_pmrecipients" edit_format="textbox" data_type="string" can_backup="1" validation_class="SV_SubscriberRemoved_Option_Recipients" validation_method="verifyOption">
       <default_value></default_value>
       <edit_format_params>rows=4</edit_format_params>
       <sub_options></sub_options>
